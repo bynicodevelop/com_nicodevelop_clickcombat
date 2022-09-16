@@ -1,90 +1,35 @@
-import 'dart:async';
-
-import 'package:com_nicodevelop_clickcombat/components/timer/timer_component.dart';
-import 'package:com_nicodevelop_clickcombat/utils/align_date_time.dart';
+import 'package:com_nicodevelop_clickcombat/screens/main_screen.dart';
+import 'package:com_nicodevelop_clickcombat/services/clicker/clicker_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.immersive,
+    SystemUiMode.manual,
     overlays: [],
   );
 
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    DateTime now = DateTime.now().toUtc();
-    DateTime roundUp = alignDateTime(
-      now,
-      const Duration(minutes: 1),
-      true,
-    );
-
-    // Différence en secondes
-    setState(() {
-      _counter = roundUp.difference(now).inSeconds;
-    });
-
-    Timer.periodic(
-      const Duration(
-        seconds: 1,
-      ),
-      (_) => setState(() {
-        if (_counter > 0) _counter--;
-      }),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 22.0,
-              left: 26.0,
-            ),
-            child: TimerComponent(
-              time: _counter,
-            ),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<ClickerBloc>(
+            create: (_) => ClickerBloc(),
           ),
         ],
+        child: const MainScreen(),
       ),
     );
   }

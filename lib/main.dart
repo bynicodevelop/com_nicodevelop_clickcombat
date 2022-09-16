@@ -1,4 +1,4 @@
-import 'package:com_nicodevelop_clickcombat/screens/main_screen.dart';
+import 'package:com_nicodevelop_clickcombat/screens/start_screen.dart';
 import 'package:com_nicodevelop_clickcombat/services/clicker/clicker_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,7 +29,7 @@ class App extends StatelessWidget {
             create: (_) => ClickerBloc(),
           ),
         ],
-        child: const MainScreen(),
+        child: const StartScreen(),
       ),
     );
   }

@@ -15,7 +15,9 @@ String getTextTimer(int seconds) {
     return '$days jours $hoursText:$minutesText:$secondsText';
   } else if (hours > 0) {
     return '$hoursText:$minutesText:$secondsText';
-  } else {
+  } else if (minutes > 0) {
     return '$minutesText:$secondsText';
+  } else {
+    return secondsText;
   }
 }

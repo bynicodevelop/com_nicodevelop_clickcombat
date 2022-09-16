@@ -51,12 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
     DateTime now = DateTime.now().toUtc();
     DateTime roundUp = alignDateTime(
       now,
-      const Duration(hours: 1),
+      const Duration(minutes: 1),
       true,
     );
-
-    print(now);
-    print(roundUp);
 
     // Différence en secondes
     setState(() {

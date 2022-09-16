@@ -8,12 +8,13 @@ class StartScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // TimerComponent(time: time),
             const Text("Vous pouvez encore prendre place dans l'arène"),
             ElevatedButton(
               onPressed: () {},
-              child: const Text("Clicker"),
+              child: const Text("Jouer"),
             ),
           ],
         ),

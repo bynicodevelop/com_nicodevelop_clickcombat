@@ -1,5 +1,7 @@
+import 'package:com_nicodevelop_clickcombat/bootstrap.dart';
 import 'package:com_nicodevelop_clickcombat/screens/start_screen.dart';
 import 'package:com_nicodevelop_clickcombat/services/clicker/clicker_bloc.dart';
+import 'package:com_nicodevelop_clickcombat/services/timer/timer_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,11 +27,16 @@ class App extends StatelessWidget {
       title: 'Flutter Demo',
       home: MultiBlocProvider(
         providers: [
+          BlocProvider<TimerBloc>(
+            create: (context) => TimerBloc(),
+          ),
           BlocProvider<ClickerBloc>(
             create: (_) => ClickerBloc(),
           ),
         ],
-        child: const StartScreen(),
+        child: const Bootstrap(
+          child: StartScreen(),
+        ),
       ),
     );
   }
